@@ -2,3 +2,6 @@ build/
 cub3D
 cub3d_parser
 cub3d_renderer
+*.sh
+*.json
+volcados/
