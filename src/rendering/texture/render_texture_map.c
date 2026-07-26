@@ -17,9 +17,9 @@
 void	render_texture_tex_x(t_ray *ray, t_texture *texture)
 {
 	ray->tex_x = (int)(ray->wall_x * texture->width);
-	if (ray->side == 0 && ray->ray_dir.x > 0)
+	if (ray->side == 0 && ray->ray_dir.x < 0)
 		ray->tex_x = texture->width - ray->tex_x - 1;
-	if (ray->side == 1 && ray->ray_dir.y < 0)
+	if (ray->side == 1 && ray->ray_dir.y > 0)
 		ray->tex_x = texture->width - ray->tex_x - 1;
 }
 

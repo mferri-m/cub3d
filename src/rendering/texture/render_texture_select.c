@@ -17,14 +17,16 @@ t_texture	*render_texture_select(t_game *game, t_ray *ray)
 {
 	if (ray->side == 0)
 	{
-		if (ray->step_x > 0)
+		if (ray->ray_dir.x > 0)
+			return (&game->textures[EAST]);
+		else
 			return (&game->textures[WEST]);
-		return (&game->textures[EAST]);
 	}
 	else
 	{
-		if (ray->step_y > 0)
+		if (ray->ray_dir.y > 0)
+			return (&game->textures[SOUTH]);
+		else
 			return (&game->textures[NORTH]);
-		return (&game->textures[SOUTH]);
 	}
 }
