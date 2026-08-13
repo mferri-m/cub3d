@@ -20,23 +20,23 @@ static void	set_direction_vector(char c, t_player *player)
 {
 	if (c == 'N')
 	{
-		player->direction_x = 0;
-		player->direction_y = -1;
+		player->direction.x = 0;
+		player->direction.y = -1;
 	}
 	else if (c == 'S')
 	{
-		player->direction_x = 0;
-		player->direction_y = 1;
+		player->direction.x = 0;
+		player->direction.y = 1;
 	}
 	else if (c == 'E')
 	{
-		player->direction_x = 1;
-		player->direction_y = 0;
+		player->direction.x = 1;
+		player->direction.y = 0;
 	}
 	else
 	{
-		player->direction_x = -1;
-		player->direction_y = 0;
+		player->direction.x = -1;
+		player->direction.y = 0;
 	}
 }
 
@@ -44,23 +44,23 @@ static void	set_plane_vector(char c, t_player *player)
 {
 	if (c == 'N')
 	{
-		player->plane_x = 0.66;
-		player->plane_y = 0;
+		player->plane.x = 0.66;
+		player->plane.y = 0;
 	}
 	else if (c == 'S')
 	{
-		player->plane_x = -0.66;
-		player->plane_y = 0;
+		player->plane.x = -0.66;
+		player->plane.y = 0;
 	}
 	else if (c == 'E')
 	{
-		player->plane_x = 0;
-		player->plane_y = 0.66;
+		player->plane.x = 0;
+		player->plane.y = 0.66;
 	}
 	else
 	{
-		player->plane_x = 0;
-		player->plane_y = -0.66;
+		player->plane.x = 0;
+		player->plane.y = -0.66;
 	}
 }
 

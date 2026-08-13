@@ -4,3 +4,6 @@ cub3d_parser
 cub3d_renderer
 libft/libft.a
 libft/src/obj/
+*.sh
+*.json
+volcados/

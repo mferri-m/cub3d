@@ -23,6 +23,9 @@ void	game_init(t_game *game)
 		game->scene.texture_paths[index] = NULL;
 		index++;
 	}
+	game->window.width = WINDOW_WIDTH;
+	game->window.height = WINDOW_HEIGHT;
+	game->window.title = WINDOW_TITLE;
 }
 
 static void	free_map(char **map)
