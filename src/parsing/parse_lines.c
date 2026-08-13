@@ -13,8 +13,6 @@
 #include "parsing.h"
 #include <errno.h>
 
-/* reset so a later errno != 0 can only mean this read() failed,
- * letting read_scene_lines tell a real error apart from clean EOF */
 static char	*next_scene_line(int fd)
 {
 	errno = 0;

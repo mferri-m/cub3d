@@ -12,10 +12,6 @@
 
 #include "parsing.h"
 
-/* Both helpers below assume c is already one of N/S/E/W — guaranteed by
- * validate_map_row's is_spawn_char() check before set_player_spawn is ever
- * called. Their trailing `else` means "must be W", not "anything else";
- * do not call these from a new site without that same guarantee. */
 static void	set_direction_vector(char c, t_player *player)
 {
 	if (c == 'N')
@@ -64,9 +60,6 @@ static void	set_plane_vector(char c, t_player *player)
 	}
 }
 
-/* player->x/y are set to row/col + 0.5 (cell center); validate_map()
- * later recovers the spawn row/col with (int)player->y / (int)player->x
- * instead of threading two extra parameters through every call. */
 void	set_player_spawn(t_player *player, int row, int col, char c)
 {
 	player->x = col + 0.5;

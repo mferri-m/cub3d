@@ -12,11 +12,6 @@
 
 #include "parsing.h"
 
-/* t_map_ctx and t_bfs_queue live in parsing.h (norm forbids typedefs
- * inside .c files). t_bfs_queue tracks its own tail instead of relying on
- * ft_lstadd_back, which walks the whole list to find the tail on every
- * call, turning each enqueue into an O(n) scan and the full flood fill
- * into O(n^2) on a large open map. */
 static int	enqueue_cell(t_bfs_queue *queue, int index)
 {
 	int		*value;
