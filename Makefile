@@ -14,6 +14,7 @@ CPPFLAGS := -Iincludes \
 	-Iminilibx-linux \
 	-Ilibft/inc
 BUILD_DIR := build
+DEPFLAGS := -MMD -MP
 LIBFT_DIR := libft
 LIBFT := $(LIBFT_DIR)/libft.a
 COMMON_SRC := src/core/error.c src/core/game.c
@@ -88,7 +89,9 @@ norm:
 
 $(BUILD_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(CPPFLAGS) $(DEPFLAGS) -c $< -o $@
+
+-include $(OBJ:.o=.d) $(DEV_PARSE_OBJ:.o=.d) $(DEV_RENDER_OBJ:.o=.d)
 
 clean:
 	rm -rf $(BUILD_DIR)
