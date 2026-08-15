@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "parsing.h"
-#include <fcntl.h>
 
 static int	is_valid_uint(const char *s)
 {
@@ -31,10 +30,24 @@ static int	is_valid_uint(const char *s)
 
 static int	parse_color_value(const char *token, int *out)
 {
+	int	digit;
+	int	i;
+	int	value;
+
 	if (!is_valid_uint(token))
 		return (0);
-	*out = ft_atoi(token);
-	return (*out <= RGB_MAX_VALUE);
+	i = 0;
+	value = 0;
+	while (token[i] != '\0')
+	{
+		digit = token[i] - '0';
+		if (value > (RGB_MAX_VALUE - digit) / 10)
+			return (0);
+		value = value * 10 + digit;
+		i++;
+	}
+	*out = value;
+	return (1);
 }
 
 static void	free_split(char **parts)
@@ -72,14 +85,8 @@ int	parse_color_line(const char *content, t_color *color)
 
 int	parse_texture_line(const char *content, char **dest)
 {
-	int	fd;
-
 	if (content[0] == '\0')
 		return (0);
-	fd = open(content, O_RDONLY);
-	if (fd < 0)
-		return (0);
-	close(fd);
 	*dest = ft_strdup(content);
 	return (*dest != NULL);
 }

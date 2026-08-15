@@ -62,6 +62,5 @@ int	render_destroy_game(t_game *game)
 	render_destroy_image(game);
 	render_destroy_window(game);
 	render_destroy_mlx(game);
-	exit(0);
 	return (0);
 }

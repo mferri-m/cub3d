@@ -28,7 +28,10 @@ int	ren_close_window(t_game *game)
 int	ren_key_press(int keycode, t_game *game)
 {
 	if (keycode == KEY_ESC)
-		return (render_destroy_game(game));
+	{
+		render_destroy_game(game);
+		exit(0);
+	}
 	if (keycode == KEY_W)
 		ren_move_forward(game);
 	else if (keycode == KEY_S)

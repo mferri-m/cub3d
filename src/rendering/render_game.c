@@ -81,16 +81,24 @@ int	render_game(t_game *game)
 		return (1);
 	if (render_texture_init(game))
 	{
-		render_destroy_textures(game);
-		render_destroy_mlx(game);
+		render_destroy_game(game);
 		return (1);
 	}
 	if (ren_create_window(game))
+	{
+		render_destroy_game(game);
 		return (1);
+	}
 	if (ren_create_image(game))
+	{
+		render_destroy_game(game);
 		return (1);
+	}
 	if (ren_register_hooks(game))
+	{
+		render_destroy_game(game);
 		return (1);
+	}
 	render_frame(game);
 	mlx_loop(game->mlx);
 	return (0);
