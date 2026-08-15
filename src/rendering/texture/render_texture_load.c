@@ -44,7 +44,7 @@ int	render_texture_init(t_game *game)
 				game->mlx,
 				&game->textures[i],
 				game->scene.texture_paths[i]))
-			return (1);
+			return (cub_error("cannot load texture"));
 		i++;
 	}
 	return (0);

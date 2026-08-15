@@ -18,6 +18,7 @@
 #include "render/texture/render_texture.h"
 #include "render/frame/render_frame.h"
 #include "render/mlx/render_mlx.h"
+#include "render/destroy/render_destroy.h"
 
 int	ren_init_mlx(t_game *game)
 {
@@ -78,13 +79,17 @@ int	render_game(t_game *game)
 {
 	if (ren_init_mlx(game))
 		return (1);
+	if (render_texture_init(game))
+	{
+		render_destroy_textures(game);
+		render_destroy_mlx(game);
+		return (1);
+	}
 	if (ren_create_window(game))
 		return (1);
 	if (ren_create_image(game))
 		return (1);
 	if (ren_register_hooks(game))
-		return (1);
-	if (render_texture_init(game))
 		return (1);
 	render_frame(game);
 	mlx_loop(game->mlx);

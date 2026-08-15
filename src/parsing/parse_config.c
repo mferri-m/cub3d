@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "parsing.h"
+#include <fcntl.h>
 
 static int	is_valid_uint(const char *s)
 {
@@ -71,8 +72,14 @@ int	parse_color_line(const char *content, t_color *color)
 
 int	parse_texture_line(const char *content, char **dest)
 {
+	int	fd;
+
 	if (content[0] == '\0')
 		return (0);
+	fd = open(content, O_RDONLY);
+	if (fd < 0)
+		return (0);
+	close(fd);
 	*dest = ft_strdup(content);
 	return (*dest != NULL);
 }
