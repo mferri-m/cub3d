@@ -56,8 +56,6 @@ DEV_PARSE_OBJ := $(DEV_PARSE_SRC:%.c=$(BUILD_DIR)/%.o)
 DEV_RENDER := cub3d_renderer
 DEV_RENDER_SRC := dev/renderer_main.c $(COMMON_SRC) $(RENDER_SRC)
 DEV_RENDER_OBJ := $(DEV_RENDER_SRC:%.c=$(BUILD_DIR)/%.o)
-NORM_FILES := includes src dev
-
 MLX_DIR := minilibx-linux
 MLX_LIB := $(MLX_DIR)/libmlx.a
 
@@ -68,7 +66,7 @@ $(MLX_LIB):
 
 all: $(NAME)
 
-$(NAME): norm $(OBJ) $(LIBFT) $(MLX_LIB)
+$(NAME): $(OBJ) $(LIBFT) $(MLX_LIB)
 	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(LDLIBS) -o $(NAME)
 
 $(LIBFT): FORCE
@@ -76,16 +74,13 @@ $(LIBFT): FORCE
 
 dev-parse: $(DEV_PARSE)
 
-$(DEV_PARSE): norm $(DEV_PARSE_OBJ) $(LIBFT)
+$(DEV_PARSE): $(DEV_PARSE_OBJ) $(LIBFT)
 	$(CC) $(CFLAGS) $(DEV_PARSE_OBJ) $(LIBFT) -o $(DEV_PARSE)
 
 dev-render: $(DEV_RENDER)
 
-$(DEV_RENDER): norm $(MLX_LIB) $(DEV_RENDER_OBJ) $(LIBFT)
+$(DEV_RENDER): $(MLX_LIB) $(DEV_RENDER_OBJ) $(LIBFT)
 	$(CC) $(CFLAGS) $(DEV_RENDER_OBJ) $(LIBFT) $(LDLIBS) -o $(DEV_RENDER)
-
-norm:
-	norminette $(NORM_FILES)
 
 $(BUILD_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)
@@ -107,4 +102,4 @@ bonus: all
 
 FORCE:
 
-.PHONY: all clean fclean re bonus dev-parse dev-render norm FORCE
+.PHONY: all clean fclean re bonus dev-parse dev-render FORCE

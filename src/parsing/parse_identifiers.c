@@ -35,6 +35,8 @@ static int	is_map_char(char c)
 
 t_line_type	get_line_type(const char *line)
 {
+	int	i;
+
 	if (is_blank_line(line))
 		return (LINE_EMPTY);
 	if (ft_strncmp(line, "NO", 2) == 0 && is_separator(line[2]))
@@ -49,7 +51,10 @@ t_line_type	get_line_type(const char *line)
 		return (LINE_F);
 	if (line[0] == 'C' && is_separator(line[1]))
 		return (LINE_C);
-	if (is_map_char(line[0]))
+	i = 0;
+	while (line[i] == ' ' || line[i] == '\t')
+		i++;
+	if (is_map_char(line[i]))
 		return (LINE_MAP);
 	return (LINE_INVALID);
 }

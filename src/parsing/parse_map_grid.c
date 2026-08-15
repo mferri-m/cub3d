@@ -12,6 +12,11 @@
 
 #include "parsing.h"
 
+static int	is_border_char(char c)
+{
+	return (c == '1' || c == ' ');
+}
+
 int	compute_map_width(t_scene *scene)
 {
 	int	row;
@@ -50,16 +55,18 @@ int	validate_map_border(t_scene *scene)
 	col = 0;
 	while (col < scene->width)
 	{
-		if (get_map_char(scene, scene->width, 0, col) != '1'
-			|| get_map_char(scene, scene->width, scene->height - 1, col) != '1')
+		if (!is_border_char(get_map_char(scene, scene->width, 0, col))
+			|| !is_border_char(get_map_char(scene, scene->width,
+					scene->height - 1, col)))
 			return (cub_error("map is not closed"));
 		col++;
 	}
 	row = 0;
 	while (row < scene->height)
 	{
-		if (get_map_char(scene, scene->width, row, 0) != '1'
-			|| get_map_char(scene, scene->width, row, scene->width - 1) != '1')
+		if (!is_border_char(get_map_char(scene, scene->width, row, 0))
+			|| !is_border_char(get_map_char(scene, scene->width, row,
+					scene->width - 1)))
 			return (cub_error("map is not closed"));
 		row++;
 	}
